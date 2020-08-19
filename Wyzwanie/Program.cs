@@ -15,19 +15,21 @@ namespace Wyzwanie
 
         private static void Method()
         {
-            Console.WriteLine("Cześć. Witaj w wyzwaniu Kurs .NET. Aby wziąć udział w grze podaj swój adres email.");
-
-            Console.Write("email:");
-            var email = Console.ReadLine();
+            Console.WriteLine("Gratulacje!");
+            Console.WriteLine("Poprawnie wykonałeś zadanie.");
 
             var key = ConfigurationManager.AppSettings["key"];
-            var encrypted = EncryptProvider.AESEncrypt(email, key);
+            var encrypted = EncryptProvider.AESEncrypt("DOTNET2020", key);
 
             var group = EncryptProvider.AESDecrypt(ConfigurationManager.AppSettings["group"], key);
+            var password = EncryptProvider.AESDecrypt(ConfigurationManager.AppSettings["password"], key);
+            Console.WriteLine();
+            Console.WriteLine($"Teraz dołącz do grupy: {group}");
+            Console.WriteLine($"podając hasło: {password}");
 
-            Console.WriteLine($"Dołącz do grupy:");
-            Console.WriteLine(group);
-            Console.WriteLine($"Twoje hasło: { encrypted}");
+            Console.WriteLine();
+            Console.WriteLine("Do zobaczenia na grupie!");
+
             Console.ReadLine();
         }
     }
